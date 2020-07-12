@@ -1,0 +1,47 @@
+.makeStyles-toolbar-6 {
+  display: none;
+}
+.main-top {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px;
+}
+main {
+    overflow: hidden;
+}
+.MuiDrawer-paperAnchorDockedLeft {
+  background-color: #202020 !important;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+header {
+  box-shadow: none !important;
+  background-color: #121212 !important;
+  padding-top: 15px;
+}
+header div.MuiToolbar-root {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.MuiDivider-root {
+    background-color: #2e2e2e !important;
+}
+.hrLine {
+    width: 96%;
+    background: #2e2e2e !important;
+    border: none;
+    height: 1px;
+}
+.main-heading {
+    text-align: left;
+}
+.main-heading a {
+    color: #69cdff;
+}
+.main-top a {
+    color: #61d4ff;
+    text-decoration: none;
+    text-align: left;
+}
