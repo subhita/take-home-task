@@ -5,9 +5,16 @@
   display: flex;
   justify-content: space-evenly;
   padding: 12px;
+  text-align: left;
 }
 main {
     overflow: hidden;
+}
+.MuiListItemIcon-root {
+  color: #ffffff !important;
+}
+.MuiListItemText-secondary {
+color: rgba(255, 255, 255, 0.6) !important;
 }
 .MuiDrawer-paperAnchorDockedLeft {
   background-color: #202020 !important;

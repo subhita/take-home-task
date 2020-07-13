@@ -1,13 +1,9 @@
 import React from "react";
-// import { forwardRef } from 'react';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import UserList from "./userList";
 import UserFilter from "./userFilter";
 import Divider from "@material-ui/core/Divider";
-// import MaterialTable from "material-table";
-// import ClearIcon from '@material-ui/icons/Clear';
-// import MainFilter from "./mainFilter";
 import "./sider.css";
 import Products from "./table";
 
@@ -101,21 +97,25 @@ class Sider extends React.Component {
       filterData: USERS,
       data: data,
       columns: columns,
+      currentView: 'one',
     };
   }
   showA = () => {
     this.setState({
       filterData: this.state.users,
+      currentView: 'one',
     });
   };
   showB = () => {
     this.setState({
       filterData: this.state.users.filter((e) => e.type === "doctor"),
+      currentView: 'two'
     });
   };
   showC = () => {
     this.setState({
       filterData: this.state.users.filter((e) => e.type === "user"),
+      currentView: 'three'
     });
   };
 
@@ -126,9 +126,6 @@ class Sider extends React.Component {
   }
 
   render() {
-    // const tableIcons = {
-    //     Delete: forwardRef((props, ref) => <ClearIcon {...props} ref={ref} />),
-    //   }
     return (
       <>
         <Grid container spacing={3} style={{ marginTop: 105 }}>
@@ -142,9 +139,9 @@ class Sider extends React.Component {
               <Divider />
               <div className="main-filter">
                 <ul>
-                  <li onClick={this.showA}>All</li>
-                  <li onClick={this.showB}>Providers</li>
-                  <li onClick={this.showC}>Users</li>
+                  <li className={this.state.currentView === 'one'  ?  'active' : ''} onClick={this.showA}>All</li>
+                  <li className={this.state.currentView === 'two'  ?  'active' : ''} onClick={this.showB}>Providers</li>
+                  <li className={this.state.currentView === 'three'  ?  'active' : ''} onClick={this.showC}>Users</li>
                 </ul>
                 <a href="#">Link all providers & users to this location</a>
               </div>

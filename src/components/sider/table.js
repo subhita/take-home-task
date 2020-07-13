@@ -14,19 +14,19 @@ class Products extends React.Component {
     this.state.products = [
       {
         id: 1,
-        providerNumber: "Sporting Goods",
-        role: "49.99",
+        providerNumber: "345678",
+        role: "Super Admin",
         budaId: 12,
         account: "Bank of Sydney (01112348569)",
-        name: "football",
+        name: "Benko",
       },
       {
         id: 2,
-        providerNumber: "Sporting Goods",
-        role: "9.99",
+        providerNumber: "123456",
+        role: "Admin",
         budaId: 15,
         account: "Bank of Londan (456789568569)",
-        name: "baseball",
+        name: "Don Pablo",
       },
     ];
   }

@@ -22,6 +22,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "./dashboard.css";
 import Sider from "./../sider/sider";
+import { Avatar } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -88,7 +89,10 @@ function Dashboard(props) {
           </div>
         </div>
         <div className="">
-          <span>User</span>
+          <Avatar
+            alt="logo"
+            src="https://www.avatarapi.com/images/person2.jpg"
+          />
         </div>
       </div>
       <Divider />
@@ -172,7 +176,6 @@ function Dashboard(props) {
         <hr className="hrLine" />
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
