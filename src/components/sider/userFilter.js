@@ -1,5 +1,5 @@
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from './../../Images/search/search.png';
 
 class UserFilter extends React.Component {
   handleChange(event) {
@@ -9,7 +9,7 @@ class UserFilter extends React.Component {
   render() {
     return (
       <div className="search">
-        <SearchIcon />
+        <img src={SearchIcon} alt="search" />
         <input
           type="text"
           placeholder="Search providers & users"

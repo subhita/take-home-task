@@ -6,34 +6,16 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-class Products extends React.Component {
+class UserTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.state.filterText = "";
-    this.state.products = [
-      {
-        id: 1,
-        providerNumber: "345678",
-        role: "Super Admin",
-        budaId: 12,
-        account: "Bank of Sydney (01112348569)",
-        name: "Benko",
-      },
-      {
-        id: 2,
-        providerNumber: "123456",
-        role: "Admin",
-        budaId: 15,
-        account: "Bank of Londan (456789568569)",
-        name: "Don Pablo",
-      },
-    ];
   }
   handleRowDel(product) {
-    var index = this.state.products.indexOf(product);
-    this.state.products.splice(index, 1);
-    this.setState(this.state.products);
+    var index = this.props.usersList.indexOf(product);
+    this.props.usersList.splice(index, 1);
+    this.setState(this.props.usersList);
   }
 
   handleProductTable(evt) {
@@ -42,8 +24,8 @@ class Products extends React.Component {
       name: evt.target.name,
       value: evt.target.value,
     };
-    var products = this.state.products.slice();
-    var newProducts = products.map(function (product) {
+    var usersList = this.props.usersList.slice();
+    var newUserList = usersList.map(function (product) {
       for (var key in product) {
         if (key == item.name && product.id == item.id) {
           product[key] = item.value;
@@ -51,14 +33,14 @@ class Products extends React.Component {
       }
       return product;
     });
-    this.setState({ products: newProducts });
+    this.setState({ usersList: newUserList });
   }
   render() {
     return (
       <ProductTable
         onProductTableUpdate={this.handleProductTable.bind(this)}
         onRowDel={this.handleRowDel.bind(this)}
-        products={this.state.products}
+        usersList={this.props.usersList}
         filterText={this.state.filterText}
       />
     );
@@ -70,7 +52,7 @@ class ProductTable extends React.Component {
     var onProductTableUpdate = this.props.onProductTableUpdate;
     var rowDel = this.props.onRowDel;
     var filterText = this.props.filterText;
-    var product = this.props.products.map(function (product) {
+    var product = this.props.usersList.map(function (product) {
       if (product.name.indexOf(filterText) === -1) {
         return false;
       }
@@ -84,18 +66,19 @@ class ProductTable extends React.Component {
       );
     });
     return (
-      <TableContainer>
-        <Table aria-label="simple table" style={{ minWidth: 100 }}>
-          <TableHead>
-            <TableCell>Assigned providers</TableCell>
-            <TableCell>Role</TableCell>
-            <TableCell>Provider No</TableCell>
-            <TableCell>BUPA ID (Optional)</TableCell>
-            <TableCell>Bank Account</TableCell>
-            <TableCell></TableCell>
-          </TableHead>
-          <TableBody>{product}</TableBody>
-        </Table>
+      <TableContainer className="user-table">
+        {product.length >= 1 ? (
+          <Table aria-label="simple table" style={{ minWidth: 100 }}>
+            <TableHead>
+              <TableCell>Assigned users</TableCell>
+              <TableCell>Role</TableCell>
+              <TableCell>Mobile number</TableCell>
+              <TableCell>GENDER</TableCell>
+              <TableCell></TableCell>
+            </TableHead>
+            <TableBody>{product}</TableBody>
+          </Table>
+        ) : null}
       </TableContainer>
     );
   }
@@ -109,6 +92,7 @@ class ProductRow extends React.Component {
     return (
       <TableRow>
         <EditableCell
+        style={{color: "#ffffffe6"}}
           onProductTableUpdate={this.props.onProductTableUpdate}
           cellData={{
             type: "name",
@@ -127,24 +111,16 @@ class ProductRow extends React.Component {
         <EditableCell
           onProductTableUpdate={this.props.onProductTableUpdate}
           cellData={{
-            type: "providerNumber",
-            value: this.props.product.providerNumber,
+            type: "mobileNumber",
+            value: this.props.product.mobileNumber,
             id: this.props.product.id,
           }}
         />
         <EditableCell
           onProductTableUpdate={this.props.onProductTableUpdate}
           cellData={{
-            type: "budaId",
-            value: this.props.product.budaId,
-            id: this.props.product.id,
-          }}
-        />
-        <EditableCell
-          onProductTableUpdate={this.props.onProductTableUpdate}
-          cellData={{
-            type: "account",
-            value: this.props.product.account,
+            type: "gender",
+            value: this.props.product.gender,
             id: this.props.product.id,
           }}
         />
@@ -176,4 +152,4 @@ class EditableCell extends React.Component {
   }
 }
 
-export default Products;
+export default UserTable;

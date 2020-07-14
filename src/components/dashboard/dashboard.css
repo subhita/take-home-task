@@ -3,8 +3,9 @@
 }
 .main-top {
   display: flex;
-  justify-content: space-evenly;
-  padding: 12px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
   text-align: left;
 }
 main {
@@ -51,4 +52,21 @@ header div.MuiToolbar-root {
     color: #61d4ff;
     text-decoration: none;
     text-align: left;
+}
+.MuiListItem-button .MuiTypography-root, h6, button {
+  font-family: Poppins !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.4 !important;
+  letter-spacing: normal !important;
+}
+.sub-heading {
+  color: #ffffff99;
+  font-size: 12px;
+}
+.MuiListItem-button .MuiTypography-root{
+  font-size: 14px;
+}
+ul .MuiListItemAvatar-root {
+  min-width: 40px;
 }

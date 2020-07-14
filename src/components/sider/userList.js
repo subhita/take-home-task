@@ -4,59 +4,66 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import AddIcon from "@material-ui/icons/Add";
 import Divider from "@material-ui/core/Divider";
-import Avatar from "@material-ui/core/Avatar";
+import doctorImg from "./../../Images/doctor-placeholder/doctor-placeholder.png";
+import peopleImg from "./../../Images/people/people.png";
+import DrImg from "./../../Images/doctor/doctor.png";
+import addIcon from './../../Images/add/add.png';
+import tickIcon from './../../Images/tick/tick.png';
 
 class UserList extends React.Component {
+  state = {
+    selectedItem: 0
+  }
   filter(users) {
     if (!this.props.filter) {
       return users;
     }
-    console.log(users);
     return users.filter(
       (user) =>
-        user.providers.toLowerCase().indexOf(this.props.filter.toLowerCase()) >=
-        0
+        user.name.toLowerCase().indexOf(this.props.filter.toLowerCase()) >= 0
     );
   }
-  handleClick(user) {
-    console.log(user);
-  }
+  handleClick = (user, type) => (e) => {
+    this.props.handleOnClick(user, type);
+    if(e.target.dataset.id == user){
+      this.setState({selectedItem: e.target.dataset.id})
+    }
+  };
   render() {
     return (
       <>
         <List dense>
           {this.filter(this.props.users).map((user) => {
-            const labelId = `checkbox-list-secondary-label-${user.providers}`;
+            const labelId = `checkbox-list-secondary-label-${user.id}`;
             return (
               <>
-                <ListItem key={user.providers} button>
+                <ListItem key={user.id} id={user.id} button>
                   <ListItemAvatar>
-                    <Avatar
-                      alt={`Avatar n°${user.providers}`}
-                      src={
-                        user.type === "doctor"
-                          ? "https://www.avatarapi.com/images/person2.jpg"
-                          : "https://relayfm.s3.amazonaws.com/uploads/user/avatar/68/user_avatar_Davidsmith_artwork.png"
-                      }
+                    <img
+                      alt={`Avatar n°${user.name}`}
+                      src={user.type === "doctor" ? doctorImg : peopleImg}
                     />
                   </ListItemAvatar>
                   <ListItemText
                     id={labelId}
-                    primary={user.providers}
+                    primary={user.name}
                     secondary={user.specialization}
                   />
                   <ListItemSecondaryAction>
-                    {user.type === "doctor" ? <span>Dr.</span> : null}
-
-                    <AddIcon
-                      edge="end"
-                      // onClick={this.handleClick(user.id)}
-                      onClick={this.handleClick(user.id)}
-                      style={{ marginBottom: -7 }}
-                      inputProps={{ "aria-labelledby": labelId }}
-                    />
+                    {user.type === "doctor" ? (
+                      <img src={DrImg} alt="Dr." style={{marginRight: 10}} />
+                    ) : null}
+                    <span>
+                      <img
+                        src={this.state.selectedItem == user.id ? tickIcon : addIcon}
+                        alt="add"
+                        edge="end"
+                        key={user.id}
+                        data-id={user.id}
+                        onClick={this.handleClick(user.id, user.type)}
+                      />
+                    </span>
                   </ListItemSecondaryAction>
                 </ListItem>
                 <Divider />

@@ -22,7 +22,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "./dashboard.css";
 import Sider from "./../sider/sider";
-import { Avatar } from "@material-ui/core";
+import doctorImg from './../../Images/doctor-placeholder/doctor-placeholder.png';
+import practiceIcon from './../../Images/practice/practice.png';
+import paymentIcon from './../../Images/payment/payment.png';
+import contractIcon from './../../Images/contract/contract.png';
+import assignIcon from './../../Images/assign/assign.png';
+import assetIcon from './../../Images/assets/assets.png';
+import summaryIcon from './../../Images/summary/summary.png';
+
 
 const drawerWidth = 240;
 
@@ -88,35 +95,46 @@ function Dashboard(props) {
             <a href="#">Logout</a>
           </div>
         </div>
-        <div className="">
-          <Avatar
-            alt="logo"
-            src="https://www.avatarapi.com/images/person2.jpg"
-          />
+        <div>
+          <img
+            src={doctorImg}
+            class="Doctor-placeholder"
+            alt=""
+          ></img>
         </div>
       </div>
       <Divider />
       <List>
-        {["Practice", "Payment", "Contract"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+         <ListItem button>
+          <ListItemIcon>
+            <img src={practiceIcon} alt="Practice" />
+          </ListItemIcon>
+          <ListItemText primary="Practice" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+          <img src={paymentIcon} alt="Payment" />
+          </ListItemIcon>
+          <ListItemText primary="Payment" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+          <img src={contractIcon} alt="Contract" />
+          </ListItemIcon>
+          <ListItemText primary="Contract" />
+        </ListItem>
       </List>
       <Divider />
       <List>
         <ListItem button>
           <ListItemIcon>
-            <MailIcon />
+          <img src={assetIcon} alt="Asset" />
           </ListItemIcon>
           <ListItemText primary="Asset" />
         </ListItem>
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <InboxIcon />
+          <img src={assignIcon} alt="Assignment" />
           </ListItemIcon>
           <ListItemText primary="Assignment" />
           {open ? <ExpandLess /> : <ExpandMore />}
@@ -136,9 +154,9 @@ function Dashboard(props) {
         </Collapse>
         <ListItem button>
           <ListItemIcon>
-            <MailIcon />
+          <img src={summaryIcon} alt="Summary" />
           </ListItemIcon>
-          <ListItemText primary="Summery" />
+          <ListItemText primary="Summary" />
         </ListItem>
       </List>
     </div>
@@ -167,7 +185,7 @@ function Dashboard(props) {
             <Typography variant="h6" noWrap>
               Downtown Clinic
             </Typography>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom className="sub-heading">
               1 Test Street Sydney NSW 2000 • ABC Pty Ltd
             </Typography>
           </div>

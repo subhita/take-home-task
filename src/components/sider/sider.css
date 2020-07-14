@@ -2,69 +2,88 @@
   border-radius: 0px !important;
 }
 .input-search {
-    border: none;
-    padding-top: 4px;
-    width: 100%;
-    /* text-align: center; */
-    /* border-bottom: 1px solid #202020; */
-    padding-bottom: 16px;
-    padding-left: 20px;
-    background: #202020;
+  border: none;
+  padding-top: 4px;
+  width: 100%;
+  /* text-align: center; */
+  /* border-bottom: 1px solid #202020; */
+  padding-bottom: 16px;
+  padding-left: 20px;
+  background: #202020;
 }
 .left-heading {
-    text-align: left;
-    margin-bottom: 8px;
-    color: white;
+  text-align: left;
+  margin-bottom: 8px;
+  color: #ffffff99;
 }
 .search {
-    /* position: relative;
+  /* position: relative;
     top: 30px;
     right: 120px; */
-    padding-left: 20px;
-    display: flex;
-    align-items: flex-start;
-    border-bottom: 1px solid #202020;
-    padding-top: 20px;
+  padding-left: 20px;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #202020;
+  padding-top: 20px;
 }
 .input-search:focus {
-    outline: none;
+  outline: none;
 }
 .main-filter ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    padding-left: inherit;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  padding-left: inherit;
 }
 .main-filter .active {
-    border-bottom: 2px solid #0f6ebe;
+  border-bottom: 2px solid #0f6ebe;
 }
 .main-filter a {
-    color: #61d4ff;
+  color: #61d4ff;
 }
-.table-paper div.MuiToolbar-root{
-    display: none;
+.table-paper div.MuiToolbar-root {
+  display: none;
+}
+tbody input:first-child {
+    color: #ffffffe6;
 }
 tbody input {
-    background: #202020;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
+  background: #202020;
+  border: none;
+  color: #ffffff99;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
-td, th{
-    border-color: #121212 !important;
+
+td,
+th {
+  border-color: #121212 !important;
+  padding: 5px 16px !important;
+  font-family: Poppins !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.4 !important;
+  letter-spacing: normal !important;
+  font-size: 10px;
 }
 tbody input:focus {
-    outline: none;
-    background: #121212;
+  outline: none;
+  background: #121212;
 }
 thead {
-    background: #121212;
+  background: #121212;
 }
 thead th {
-    color: white !important;
-    padding: 6px 16px !important;
+    color: #ffffff99 !important;
+  padding: 6px 16px !important;
 }
 table {
-    margin-top: -8px;
+  margin-top: -5px;
+}
+.doctor-table {
+  background: #202020;
+}
+.user-table {
+  background: #202020;
+  margin-top: 24px;
 }

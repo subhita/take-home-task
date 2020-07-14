@@ -5,99 +5,93 @@ import UserList from "./userList";
 import UserFilter from "./userFilter";
 import Divider from "@material-ui/core/Divider";
 import "./sider.css";
-import Products from "./table";
+import DoctorTable from "./DoctorTable";
+import UserTable from './UserTable';
 
 class Sider extends React.Component {
   constructor() {
     super();
     const USERS = [
       {
-        providers: "Banko",
+        name: "Banko",
         specialization: "Specialist",
         type: "doctor",
         id: 1,
         role: "super admin",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0123",
-        bankAccount: "5657657676",
+        account: "5657657676",
+        mobileNumber: 9876545678,
+        gender: "Female"
       },
       {
-        providers: "Pueblo",
+        name: "Pueblo",
         specialization: "User • Female",
         type: "user",
         id: 2,
         role: "admin",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0123",
-        bankAccount: "",
+        account: "",
+        mobileNumber: 9876875678,
+        gender: "Female"
       },
       {
-        providers: "Don Pablo",
+        name: "Don Pablo",
         specialization: "Specialist",
         type: "doctor",
-        id: 1,
+        id: 3,
         role: "observer",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0137",
-        bankAccount: "4546576576",
+        account: "4546576576",
+        mobileNumber: 1236545678,
+        gender: "Male",
       },
       {
-        providers: "Hava Lama",
+        name: "Hava Lama",
         specialization: "General Practice",
         type: "doctor",
-        id: 1,
+        id: 4,
         role: "guest",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0127",
-        bankAccount: "",
+        account: "34567890",
+        mobileNumber: 7689545678,
+        gender: "Feale",
       },
       {
-        providers: "Guillermo Salva",
+        name: "Guillermo Salva",
         specialization: "User • Male",
         type: "user",
-        id: 1,
+        id: 5,
         role: "super admin",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0593",
-        bankAccount: "456546955769",
+        account: "456546955769",
+        mobileNumber: 4566545678,
+        gender: "Male",
       },
       {
-        providers: "Salla Rosa",
+        name: "Salla Rosa",
         specialization: "User • Female",
         type: "user",
-        id: 1,
+        id: 6,
         role: "admin",
-        pnumber: 123,
+        providerNumber: 123,
         bupaId: "0563",
-        bankAccount: "123456789",
-      },
-    ];
-    const columns = [
-      { title: "Name", field: "name" },
-      { title: "Surname", field: "surname" },
-      { title: "Birth Year", field: "birthYear", type: "numeric" },
-      {
-        title: "Birth Place",
-        field: "birthCity",
-        lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
-      },
-    ];
-    const data = [
-      { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
-      {
-        name: "Zerya Betül",
-        surname: "Baran",
-        birthYear: 2017,
-        birthCity: 34,
+        account: "123456789",
+        mobileNumber: 7896545678,
+        gender: "Female",
       },
     ];
     this.state = {
       users: USERS,
       filter: null,
       filterData: USERS,
-      data: data,
-      columns: columns,
       currentView: 'one',
+      doctorTableData: [],
+      userTableData: [],
     };
   }
   showA = () => {
@@ -124,7 +118,20 @@ class Sider extends React.Component {
       filter: inputValue,
     });
   }
-
+  handleOnClick(user, type) {
+    const filterData = this.state.users.filter(item => item.id === user);
+    if(type === "doctor"){
+      this.setState({
+        doctorTableData: this.state.doctorTableData.concat(filterData),
+      })
+    }
+    else {
+      this.setState({
+        userTableData: this.state.userTableData.concat(filterData),
+      })
+    }
+   
+  }
   render() {
     return (
       <>
@@ -148,12 +155,14 @@ class Sider extends React.Component {
               <UserList
                 filter={this.state.filter}
                 users={this.state.filterData}
+                handleOnClick={this.handleOnClick.bind(this)}
               />
             </Paper>
           </Grid>
           <Grid item xs={8}>
-            <Paper style={{ background: "#202020" }} className="table-paper">
-              <Products />
+            <Paper style={{ background: "#121212" }} className="table-paper">
+              <DoctorTable products={this.state.doctorTableData} />
+              <UserTable usersList={this.state.userTableData} />
             </Paper>
           </Grid>
         </Grid>
