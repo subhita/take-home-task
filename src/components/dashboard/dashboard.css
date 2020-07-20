@@ -14,6 +14,21 @@ main {
 .MuiListItemIcon-root {
   color: #ffffff !important;
 }
+@media screen and (min-width: 600px){
+.makeStyles-appBar-4 {
+    width: calc(100% - 160px) !important;
+    margin-left: 160px !important;
+}
+}
+.MuiListItemIcon-root {
+  min-width: 26px !important;
+}
+.MuiList-root a {
+  outline: none;
+}
+nav {
+  width: 160px !important;
+}
 .MuiListItemText-secondary {
 color: rgba(255, 255, 255, 0.6) !important;
 }
@@ -59,6 +74,7 @@ header div.MuiToolbar-root {
   font-style: normal !important;
   line-height: 1.4 !important;
   letter-spacing: normal !important;
+  color: #ffffff99;
 }
 .sub-heading {
   color: #ffffff99;
@@ -69,4 +85,9 @@ header div.MuiToolbar-root {
 }
 ul .MuiListItemAvatar-root {
   min-width: 40px;
+}
+h1 {
+  margin-top: 98px;
+    color: white;
+    text-align: left;
 }

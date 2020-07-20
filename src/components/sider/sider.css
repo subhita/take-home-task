@@ -1,6 +1,9 @@
 .MuiPaper-rounded {
   border-radius: 0px !important;
 }
+.MuiDrawer-paper {
+  width: 160px !important;
+}
 .input-search {
   border: none;
   padding-top: 4px;
@@ -34,18 +37,26 @@
   display: flex;
   justify-content: space-around;
   padding-left: inherit;
+  margin-left: -20px;
+  margin-bottom: 0px;
+    margin-top: 8px;
 }
 .main-filter .active {
   border-bottom: 2px solid #0f6ebe;
 }
 .main-filter a {
   color: #61d4ff;
+  /* margin-left: 18px; */
+  height: 2px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 .table-paper div.MuiToolbar-root {
   display: none;
 }
 tbody input:first-child {
-    color: #ffffffe6;
+  color: #ffffffe6;
 }
 tbody input {
   background: #202020;
@@ -58,7 +69,7 @@ tbody input {
 td,
 th {
   border-color: #121212 !important;
-  padding: 5px 16px !important;
+  padding: 5px 0px !important;
   font-family: Poppins !important;
   font-stretch: normal !important;
   font-style: normal !important;
@@ -74,11 +85,11 @@ thead {
   background: #121212;
 }
 thead th {
-    color: #ffffff99 !important;
-  padding: 6px 16px !important;
+  color: #ffffff99 !important;
+  padding: 6px 10px !important;
 }
 table {
-  margin-top: -5px;
+  margin-top: 0px;
 }
 .doctor-table {
   background: #202020;
@@ -86,4 +97,27 @@ table {
 .user-table {
   background: #202020;
   margin-top: 24px;
+}
+td,
+th {
+  width: 20%;
+}
+td input {
+  width: 80%;
+  font-family: Poppins !important;
+  font-stretch: normal !important;
+  font-style: normal !important;
+  line-height: 1.4 !important;
+  letter-spacing: normal !important;
+}
+.user-table th {
+  width: 27%;
+}
+.user-table td {
+  width: 27%;
+}
+.location-link {
+  display: inline-block;
+  margin-left: -72px;
+  margin-bottom: 14px;
 }

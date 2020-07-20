@@ -8,13 +8,10 @@ import Divider from "@material-ui/core/Divider";
 import doctorImg from "./../../Images/doctor-placeholder/doctor-placeholder.png";
 import peopleImg from "./../../Images/people/people.png";
 import DrImg from "./../../Images/doctor/doctor.png";
-import addIcon from './../../Images/add/add.png';
-import tickIcon from './../../Images/tick/tick.png';
+import addIcon from "./../../Images/add/add.png";
+import tickIcon from "./../../Images/tick/tick.png";
 
 class UserList extends React.Component {
-  state = {
-    selectedItem: 0
-  }
   filter(users) {
     if (!this.props.filter) {
       return users;
@@ -24,11 +21,8 @@ class UserList extends React.Component {
         user.name.toLowerCase().indexOf(this.props.filter.toLowerCase()) >= 0
     );
   }
-  handleClick = (user, type) => (e) => {
-    this.props.handleOnClick(user, type);
-    if(e.target.dataset.id == user){
-      this.setState({selectedItem: e.target.dataset.id})
-    }
+  handleClick = (userId, type) => (e) => {
+    this.props.handleOnClick(userId, type);
   };
   render() {
     return (
@@ -52,11 +46,11 @@ class UserList extends React.Component {
                   />
                   <ListItemSecondaryAction>
                     {user.type === "doctor" ? (
-                      <img src={DrImg} alt="Dr." style={{marginRight: 10}} />
+                      <img src={DrImg} alt="Dr." style={{ marginRight: 10 }} />
                     ) : null}
                     <span>
                       <img
-                        src={this.state.selectedItem == user.id ? tickIcon : addIcon}
+                        src={user.selectedItem ? tickIcon : addIcon}
                         alt="add"
                         edge="end"
                         key={user.id}

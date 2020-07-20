@@ -6,7 +6,8 @@ import UserFilter from "./userFilter";
 import Divider from "@material-ui/core/Divider";
 import "./sider.css";
 import DoctorTable from "./DoctorTable";
-import UserTable from './UserTable';
+import UserTable from "./UserTable";
+import arrowIcon from './../../Images/arrow/arrow@2x.png';
 
 class Sider extends React.Component {
   constructor() {
@@ -22,7 +23,8 @@ class Sider extends React.Component {
         bupaId: "0123",
         account: "5657657676",
         mobileNumber: 9876545678,
-        gender: "Female"
+        gender: "Female",
+        selectedItem: false,
       },
       {
         name: "Pueblo",
@@ -34,7 +36,8 @@ class Sider extends React.Component {
         bupaId: "0123",
         account: "",
         mobileNumber: 9876875678,
-        gender: "Female"
+        gender: "Female",
+        selectedItem: false,
       },
       {
         name: "Don Pablo",
@@ -47,6 +50,7 @@ class Sider extends React.Component {
         account: "4546576576",
         mobileNumber: 1236545678,
         gender: "Male",
+        selectedItem: false,
       },
       {
         name: "Hava Lama",
@@ -59,6 +63,7 @@ class Sider extends React.Component {
         account: "34567890",
         mobileNumber: 7689545678,
         gender: "Feale",
+        selectedItem: false,
       },
       {
         name: "Guillermo Salva",
@@ -71,6 +76,7 @@ class Sider extends React.Component {
         account: "456546955769",
         mobileNumber: 4566545678,
         gender: "Male",
+        selectedItem: false,
       },
       {
         name: "Salla Rosa",
@@ -83,13 +89,14 @@ class Sider extends React.Component {
         account: "123456789",
         mobileNumber: 7896545678,
         gender: "Female",
+        selectedItem: false,
       },
     ];
     this.state = {
       users: USERS,
       filter: null,
       filterData: USERS,
-      currentView: 'one',
+      currentView: "one",
       doctorTableData: [],
       userTableData: [],
     };
@@ -97,19 +104,19 @@ class Sider extends React.Component {
   showA = () => {
     this.setState({
       filterData: this.state.users,
-      currentView: 'one',
+      currentView: "one",
     });
   };
   showB = () => {
     this.setState({
       filterData: this.state.users.filter((e) => e.type === "doctor"),
-      currentView: 'two'
+      currentView: "two",
     });
   };
   showC = () => {
     this.setState({
       filterData: this.state.users.filter((e) => e.type === "user"),
-      currentView: 'three'
+      currentView: "three",
     });
   };
 
@@ -118,19 +125,33 @@ class Sider extends React.Component {
       filter: inputValue,
     });
   }
-  handleOnClick(user, type) {
-    const filterData = this.state.users.filter(item => item.id === user);
-    if(type === "doctor"){
-      this.setState({
-        doctorTableData: this.state.doctorTableData.concat(filterData),
-      })
-    }
-    else {
-      this.setState({
-        userTableData: this.state.userTableData.concat(filterData),
-      })
-    }
-   
+  handleOnClick(userId, type) {
+    this.setState(
+      (prevState) => ({
+        filterData: prevState.filterData.map((user) => ({
+          ...user,
+          selectedItem: user.id === userId ? true : user.selectedItem,
+        })),
+        users: prevState.users.map((user) => ({
+          ...user,
+          selectedItem: user.id === userId ? true : user.selectedItem,
+        })),
+      }),
+      () => {
+        const userListData = this.state.users.filter((item) => {
+          return item.id === userId;
+        });
+        if (type === "doctor") {
+          this.setState({
+            doctorTableData: this.state.doctorTableData.concat(userListData),
+          });
+        } else {
+          this.setState({
+            userTableData: this.state.userTableData.concat(userListData),
+          });
+        }
+      }
+    );
   }
   render() {
     return (
@@ -146,12 +167,32 @@ class Sider extends React.Component {
               <Divider />
               <div className="main-filter">
                 <ul>
-                  <li className={this.state.currentView === 'one'  ?  'active' : ''} onClick={this.showA}>All</li>
-                  <li className={this.state.currentView === 'two'  ?  'active' : ''} onClick={this.showB}>Providers</li>
-                  <li className={this.state.currentView === 'three'  ?  'active' : ''} onClick={this.showC}>Users</li>
+                  <li
+                    className={this.state.currentView === "one" ? "active" : ""}
+                    onClick={this.showA}
+                  >
+                    All
+                  </li>
+                  <li
+                    className={this.state.currentView === "two" ? "active" : ""}
+                    onClick={this.showB}
+                  >
+                    Providers
+                  </li>
+                  <li
+                    className={
+                      this.state.currentView === "three" ? "active" : ""
+                    }
+                    onClick={this.showC}
+                  >
+                    Users
+                  </li>
                 </ul>
-                <a href="#">Link all providers & users to this location</a>
+                <span className="location-link">
+                <a href="#">Link all providers to this location<img src={arrowIcon} alt="arrow" /></a>
+                </span>
               </div>
+              <Divider />
               <UserList
                 filter={this.state.filter}
                 users={this.state.filterData}
